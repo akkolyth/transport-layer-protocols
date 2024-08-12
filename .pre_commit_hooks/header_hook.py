@@ -1,11 +1,11 @@
 """
-python-template
+transport-layer-protocols
 """
 
 from pathlib import Path
 from typing import Union
 
-HEADER = '"""\npython-template\n"""\n\n'
+HEADER = '"""\ntransport-layer-protocols\n"""\n\n'
 TARGET_DIRECTORY = '.'
 
 

@@ -3,7 +3,7 @@
         "prefix": "initHeader",
         "body": [
             "\"\"\"",
-            "python-template",
+            "transport-layer-protocols",
             "\"\"\"\n"
         ]
     },
@@ -11,7 +11,7 @@
         "prefix": "initClass",
         "body": [
             "\"\"\"",
-            "python-template",
+            "transport-layer-protocols",
             "\"\"\"\n",
             "class ${1:${TM_FILENAME_BASE/(^|[_-])([a-zA-Z])/${2:/capitalize}/g}}:",
             "\tdef __init__(self) -> None:",
@@ -23,7 +23,7 @@
         "prefix": "initTest",
         "body": [
             "\"\"\"",
-            "python-template",
+            "transport-layer-protocols",
             "\"\"\"\n",
             "import unittest",
             "from unittest.mock import Mock\n",

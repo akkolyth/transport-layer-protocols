@@ -1,7 +1,7 @@
 #!/bin/bash
 
 autoflake_directory() {
-  base_directory="/workspaces/python-template/"
+  base_directory="/workspaces/transport-layer-protocols/"
   directory="$1"
   full_directory="${base_directory}${directory}"
   if [ -d "$full_directory" ]; then

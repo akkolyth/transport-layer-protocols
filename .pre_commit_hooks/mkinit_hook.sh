@@ -1,7 +1,7 @@
 #!/bin/bash
 
 init_directories() {
-  base_dir="/workspaces/python-template"
+  base_dir="/workspaces/transport-layer-protocols"
   for dir in "$@"; do
     dir_path="$base_dir/$dir"
     if [ -d "$dir_path" ]; then

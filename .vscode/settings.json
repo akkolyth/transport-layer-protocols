@@ -1,7 +1,7 @@
 {
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.diagnosticMode": "workspace",
-    "mypy.configFile": "/workspaces/python-template/mypy.ini",
+    "mypy.configFile": "/workspaces/transport-layer-protocols/mypy.ini",
     "editor.formatOnSave": true,
     "python.languageServer": "Pylance",
     "editor.codeActionsOnSave": {

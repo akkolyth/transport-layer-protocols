@@ -1,5 +1,5 @@
 {
-    "name": "python-template",
+    "name": "transport-layer-protocols",
     "image": "akkolyth/akkolyth.development.base:latest",
     "customizations": {
         "vscode": {
