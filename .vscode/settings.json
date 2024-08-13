@@ -35,5 +35,12 @@
         ".",
         "-p",
         "test_*.py"
+    ],
+    "cSpell.words": [
+        "Mypy",
+        "pylint",
+        "pylintrc",
+        "pytest",
+        "rcfile"
     ]
 }
