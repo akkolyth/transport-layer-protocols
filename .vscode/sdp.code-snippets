@@ -1,0 +1,47 @@
+{
+    "HEADER": {
+        "prefix": "initHeader",
+        "body": [
+            "\"\"\"",
+            "python-template",
+            "\"\"\"\n"
+        ]
+    },
+    "CLASS": {
+        "prefix": "initClass",
+        "body": [
+            "\"\"\"",
+            "python-template",
+            "\"\"\"\n",
+            "class ${1:${TM_FILENAME_BASE/(^|[_-])([a-zA-Z])/${2:/capitalize}/g}}:",
+            "\tdef __init__(self) -> None:",
+            "\t\tpass"
+        ],
+        "description": "Generate class"
+    },
+    "TEST": {
+        "prefix": "initTest",
+        "body": [
+            "\"\"\"",
+            "python-template",
+            "\"\"\"\n",
+            "import unittest",
+            "from unittest.mock import Mock\n",
+            "class ${1:${TM_FILENAME_BASE/(^|[_-])([a-zA-Z])/${2:/capitalize}/g}}(unittest.TestCase):",
+            "\tdef setUp(self) -> None:",
+            "\t\tsuper().setUp()",
+            "",
+            "\tdef tearDown(self) -> None:",
+            "\t\tsuper().tearDown()"
+        ],
+        "description": "Generate test"
+    },
+    "MAIN": {
+        "prefix": "__main__",
+        "body": [
+            "if __name__ == \"__main__\":",
+            "\t${1:pass}"
+        ],
+        "description": "Generate main function"
+    }
+}

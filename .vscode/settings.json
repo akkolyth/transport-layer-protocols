@@ -1,0 +1,39 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticMode": "workspace",
+    "mypy.configFile": "/workspaces/python-template/mypy.ini",
+    "editor.formatOnSave": true,
+    "python.languageServer": "Pylance",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.unusedImports": "explicit"
+    },
+    "cSpell.ignorePaths": [
+        ".vscode",
+        ".devcontainer.json",
+        "*.pt",
+        "__*__"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.analysis.ignore": [
+        "**/__init__.py"
+    ],
+    "python.analysis.importFormat": "absolute",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "test_*.py"
+    ]
+}

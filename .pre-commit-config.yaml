@@ -1,0 +1,81 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  # Pre-commit hooks from the official pre-commit-hooks repository
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-ast
+      - id: debug-statements
+      - id: check-toml
+      - id: check-xml
+      - id: check-json
+        exclude: ^sdp.code-snippets/
+      - id: pretty-format-json
+        args:
+          - "--autofix"
+          - "--indent=4"
+          - "--no-sort-keys"
+
+  # Local custom hooks
+  - repo: local
+    hooks:
+      # Organize __init__.py files
+      - id: organize-init
+        name: Organize __init__.py files
+        entry: bash -c '.pre_commit_hooks/mkinit_hook.sh $(git ls-files "*.py" | xargs -I {} dirname {} | sort -u | cut -d'/' -f1 | sort -u)'
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      # Add missing headers
+      - id: add-missing-headers
+        name: Add missing headers
+        entry: python3 .pre_commit_hooks/header_hook.py
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      # Format code (ruff)
+      - id: ruff-formatting
+        name: Format code (ruff)
+        entry: bash -c '.pre_commit_hooks/ruff_hook.sh $(git ls-files "*.py" | xargs -I {} dirname {} | sort -u | cut -d'/' -f1 | sort -u)'
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      # Lint with ruff
+      - id: check-ruff
+        name: Lint (ruff)
+        entry: ruff check
+        args: ["--fix"]
+        language: system
+        types: [python]
+
+      - id: check-pylint
+        name: Lint (pylint)
+        entry: pylint
+        args: ["--rcfile=.pylintrc"]
+        language: system
+        types: [python]
+
+      # Type check with mypy
+      - id: check-mypy
+        name: Type check (Mypy)
+        entry: mypy
+        language: system
+        types: [python]
+
+      # Run unit-tests with pytest
+      # - id: unittest-check
+      #   name: Unittest (pytest)
+      #   entry: pytest
+      #   args: ["tests/"]
+      #   language: system
+      #   types: [python]
+      #   pass_filenames: false
+      #   require_serial: true
