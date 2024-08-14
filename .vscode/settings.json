@@ -39,10 +39,12 @@
     "cSpell.words": [
         "Datagram",
         "datagrams",
+        "DGRAM",
         "Mypy",
         "pylint",
         "pylintrc",
         "pytest",
-        "rcfile"
+        "rcfile",
+        "TUNSETIFF"
     ]
 }
