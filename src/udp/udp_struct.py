@@ -23,7 +23,7 @@ underlying protocol. RFC available here: https://datatracker.ietf.org/doc/html/r
 import struct
 
 
-class UDPDecorator:
+class UDPStruct:
     _HEADER_SIZE_BYTES = 8
     _MAX_PAYLOAD_BYTES = 65527
 
@@ -31,11 +31,9 @@ class UDPDecorator:
         self.__host_port = host_port
         self.__dest_port = dest_port
 
-    def decorate(self, payload: bytes) -> bytes:
-        if len(payload) > UDPDecorator._MAX_PAYLOAD_BYTES:
-            raise ValueError(
-                f'Payload exceeds max UDP size: {UDPDecorator._MAX_PAYLOAD_BYTES} bytes'
-            )
+    def marshal(self, payload: bytes) -> bytes:
+        if len(payload) > UDPStruct._MAX_PAYLOAD_BYTES:
+            raise ValueError(f'Payload exceeds max UDP size: {UDPStruct._MAX_PAYLOAD_BYTES} bytes')
 
         packed_ports = self.__pack_port(self.__host_port) + self.__pack_port(self.__dest_port)
         length = self.__calculate_length(payload)
@@ -46,7 +44,7 @@ class UDPDecorator:
         return struct.pack('!H', port)
 
     def __calculate_length(self, payload: bytes) -> bytes:
-        length = UDPDecorator._HEADER_SIZE_BYTES + len(payload)
+        length = UDPStruct._HEADER_SIZE_BYTES + len(payload)
         return struct.pack('!H', length)
 
     def __calculate_checksum(self, header_and_data: bytes) -> bytes:

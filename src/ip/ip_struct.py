@@ -31,7 +31,7 @@ import struct
 from enum import Enum, IntEnum
 
 
-class IPDecorator:
+class IPStruct:
     class Version(IntEnum):
         IPV4 = 4
 
@@ -58,19 +58,19 @@ class IPDecorator:
     def __init__(
         self, source_ip: str, dest_ip: str, protocol: Protocol, payload_size: int, ttl: int = 64
     ) -> None:
-        self.__version = IPDecorator.Version.IPV4
-        self.__ihl = IPDecorator.IHL.DEFAULT
-        self.__tos = IPDecorator.TOS.DEFAULT.value
+        self.__version = IPStruct.Version.IPV4
+        self.__ihl = IPStruct.IHL.DEFAULT
+        self.__tos = IPStruct.TOS.DEFAULT.value
         self.__total_length = 20 + payload_size
         self.__identification = 54321
-        self.__flags = IPDecorator.Flags.DF
+        self.__flags = IPStruct.Flags.DF
         self.__fragment_offset = 0
         self.__ttl = ttl
         self.__protocol = protocol
         self.__source_ip = source_ip
         self.__dest_ip = dest_ip
 
-    def decorate(self, payload: bytes) -> bytes:
+    def marshal(self, payload: bytes) -> bytes:
         ver_ihl = (self.__version << 4) + self.__ihl
         flags_frag_offset = (self.__flags << 13) + self.__fragment_offset
 

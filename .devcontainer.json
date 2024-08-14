@@ -1,6 +1,11 @@
 {
     "name": "transport-layer-protocols",
     "image": "akkolyth/akkolyth.development.base:latest",
+    "runArgs": [
+        "--network=host",
+        "--device=/dev/net/tun",
+        "--cap-add=CAP_SYS_ADMIN"
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
