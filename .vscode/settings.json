@@ -37,6 +37,8 @@
         "test_*.py"
     ],
     "cSpell.words": [
+        "Datagram",
+        "datagrams",
         "Mypy",
         "pylint",
         "pylintrc",
