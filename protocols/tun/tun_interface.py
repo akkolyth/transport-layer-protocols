@@ -9,7 +9,7 @@ from typing import BinaryIO
 
 class TUNInterface:
     _TUN_NAME = b'tun0'
-    _TUN_DEVICE = 'dev/net/tun'
+    _TUN_DEVICE = '/dev/net/tun'
 
     # Define the TUN device flag. This is used to configure a virtual network interface in TUN mode.
     # TUN mode operates at the IP level (Layer 3), where it passes IP packets directly.
@@ -26,7 +26,7 @@ class TUNInterface:
     def __init__(self) -> None:
         self.__ifs = struct.pack(
             '16sH22s',
-            TUNInterface._TUN_DEVICE,
+            TUNInterface._TUN_NAME,
             TUNInterface._LINUX_IFF_TUN | TUNInterface._LINUX_IFF_NO_PI,
             b'',
         )

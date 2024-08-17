@@ -37,6 +37,7 @@
         "test_*.py"
     ],
     "cSpell.words": [
+        "BINDTODEVICE",
         "Datagram",
         "datagrams",
         "DGRAM",

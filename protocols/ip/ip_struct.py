@@ -55,13 +55,10 @@ class IPStruct:
         HIGH_RELIABILITY = 0x04
         MINIMUM_COST = 0x02
 
-    def __init__(
-        self, source_ip: str, dest_ip: str, protocol: Protocol, payload_size: int, ttl: int = 64
-    ) -> None:
+    def __init__(self, source_ip: str, dest_ip: str, protocol: Protocol, ttl: int = 64) -> None:
         self.__version = IPStruct.Version.IPV4
         self.__ihl = IPStruct.IHL.DEFAULT
         self.__tos = IPStruct.TOS.DEFAULT.value
-        self.__total_length = 20 + payload_size
         self.__identification = 54321
         self.__flags = IPStruct.Flags.DF
         self.__fragment_offset = 0
@@ -73,36 +70,40 @@ class IPStruct:
     def marshal(self, payload: bytes) -> bytes:
         ver_ihl = (self.__version << 4) + self.__ihl
         flags_frag_offset = (self.__flags << 13) + self.__fragment_offset
-
-        initial_ip_header = self.__build_initial_header(ver_ihl, flags_frag_offset)
+        payload_size = len(payload) + 20
+        initial_ip_header = self.__build_initial_header(payload_size, ver_ihl, flags_frag_offset)
         checksum = self.__calculate_checksum(initial_ip_header)
-        ip_header = self.__build_final_header(ver_ihl, flags_frag_offset, checksum)
+        ip_header = self.__build_final_header(payload_size, ver_ihl, flags_frag_offset, checksum)
 
         return ip_header + payload
 
-    def __build_initial_header(self, ver_ihl: int, flags_frag_offset: int) -> bytes:
+    def __build_initial_header(
+        self, payload_size: int, ver_ihl: int, flags_frag_offset: int
+    ) -> bytes:
         ip_header = struct.pack(
             '!BBHHHBBH4s4s',
             ver_ihl,
             self.__tos,
-            self.__total_length,
+            payload_size,
             self.__identification,
             flags_frag_offset,
             self.__ttl,
             self.__protocol,
-            b'\x00',
+            0,
             socket.inet_aton(self.__source_ip),
             socket.inet_aton(self.__dest_ip),
         )
 
         return ip_header
 
-    def __build_final_header(self, ver_ihl: int, flags_frag_offset: int, checksum: int) -> bytes:
+    def __build_final_header(
+        self, payload_size: int, ver_ihl: int, flags_frag_offset: int, checksum: int
+    ) -> bytes:
         ip_header = struct.pack(
             '!BBHHHBBH4s4s',
             ver_ihl,
             self.__tos,
-            self.__total_length,
+            payload_size,
             self.__identification,
             flags_frag_offset,
             self.__ttl,
