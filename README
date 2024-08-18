@@ -1,1 +1,12 @@
-Template repository for python
+Minimal Transport Layer Protocols (UDP/TCP) over IP using TUN/TAP Interfaces
+
+This project implements minimal clients for transport-layer protocols (UDP and TCP) over IP, making use of the TUN/TAP interfaces. By configuring virtual network interfaces (tun0), the client application can send and receive network packets through these devices, simulating network communication at the IP level.
+
+ The project currently includes:
+
+* A wrapper for IP packet construction.
+* A UDP client capable of sending and receiving UDP datagrams.
+* A small DNS frame wrapper to handle DNS queries over UDP.
+* Work-in-progress implementation of TCP over IP.
+
+The project demonstrates how raw packet manipulation can be achieved using the TUN/TAP interfaces, providing insights into low-level network protocol handling without relying on the OS network stack.
