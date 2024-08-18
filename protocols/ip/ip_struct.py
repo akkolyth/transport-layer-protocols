@@ -8,6 +8,7 @@ datagrams from sources to destinations, where sources and destinations
 are hosts identified by fixed length addresses.  The internet protocol
 also provides for fragmentation and reassembly of long datagrams, if
 necessary, for transmission through "small packet" networks.
+https://datatracker.ietf.org/doc/html/rfc791
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -44,7 +45,6 @@ class IPStruct:
         MF = 1
 
     class Protocol(IntEnum):
-        ICMP = 1
         TCP = 6
         UDP = 17
 

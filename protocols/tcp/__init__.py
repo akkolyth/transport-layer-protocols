@@ -1,6 +1,6 @@
 """
 transport-layer-protocols
 """
-from protocols.tcp.tcp_decorator import (TPCDecorator,)
+from protocols.tcp.tcp_struct import (TCPStruct,)
 
-__all__ = ['TPCDecorator']
+__all__ = ['TCPStruct']

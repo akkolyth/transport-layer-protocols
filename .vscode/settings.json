@@ -49,5 +49,13 @@
         "qtype",
         "rcfile",
         "TUNSETIFF"
-    ]
+    ],
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "remote.WSL.debug": true,
+    "remote.extensionKind": {
+        "vscode.vim": [
+            "workspace"
+        ]
+    }
 }
