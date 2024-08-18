@@ -45,6 +45,8 @@
         "pylint",
         "pylintrc",
         "pytest",
+        "qclass",
+        "qtype",
         "rcfile",
         "TUNSETIFF"
     ]
