@@ -17,10 +17,14 @@ class UDPClient:
         self.__tun_interface = TUNInterface()
 
     def send(self, payload: bytes) -> None:
-        marshaled_udp_frame = UDPStruct(self.__host_port, self.__dest_port).marshal(payload)
+        marshaled_udp_frame = UDPStruct(
+            self.__host_ip, self.__dest_ip, self.__host_port, self.__dest_port
+        ).marshal(payload)
+
         marshaled_ip_frame = IPStruct(
             self.__host_ip,
             self.__dest_ip,
             IPStruct.Protocol.UDP,
         ).marshal(marshaled_udp_frame)
+
         self.__tun_interface.write(marshaled_ip_frame)
